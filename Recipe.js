@@ -1,20 +1,22 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { Overlay, Card, Divider, Button} from 'react-native-elements';
-import Greeting from "./Greeting";
-import Recipe from "./Recipe";
 
-export default class App extends React.Component {
+export default class Recipe extends React.Component {
   state = {
     overlay : true
   }
   
+  componentDidMount(){
+    return fetch("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random?number=1",
+    {headers : {"X-RapidAPI-Key": "195a5339f7mshcfa2f4b953bd270p1bbe12jsnacc5a5c4af8a"}
+    })
+    .then((response) => {return response.json()})
+    .then(console.log)
+  }
+
   render() {
     return (
       <View style={styles.container}>
-      <Recipe></Recipe>
-      <Greeting/>
-        <Text> Test </Text>
       </View>
     );
   }
